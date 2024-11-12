@@ -22,7 +22,10 @@ Clone the repository and install dependencies.
 ```bash
 git clone https://github.com/cheddarhub/GenAIOnEdge.git
 
+```
 
-## acknowledgments
-This work is supported by the Communications Hub for Empowering Distributed Cloud Computing Applications and Research (CHEDDAR) (https://cheddarhub.org/), a hub dedicated to advancing future communications. CHEDDAR is funded by the Engineering and Physical Sciences Research Council (EPSRC) – UK Research and Innovation (UKRI) via the Technology Missions Fund (TMF). 
+## Acknowledgments
+This work is supported by the Communications Hub for Empowering Distributed Cloud Computing Applications and Research (CHEDDAR) (https://cheddarhub.org/), a hub dedicated to advancing future communications. CHEDDAR is funded by the Engineering and Physical Sciences Research Council (EPSRC) – UK Research and Innovation (UKRI) via the Technology Missions Fund (TMF).
+
+
 
