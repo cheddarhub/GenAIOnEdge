@@ -1,0 +1,21 @@
+./models/lm-evaluation-harness
+./HowTo
+./distributed
+**/venv
+**/model
+
+# Ignore Python cache and virtual environment folders
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+proxy/venv/
+
+# Ignore log and temporary files
+logs/
+temp/
+
+# Ignore node_modules for frontend projects
+**/node_modules/
+

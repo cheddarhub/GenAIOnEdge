@@ -1,0 +1,25 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: python-volume-writer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: python-volume-writer
+  template:
+    metadata:
+      labels:
+        app: python-volume-writer
+    spec:
+      containers:
+      - name: python-container
+        image: test:latest  # Replace with your image name
+        volumeMounts:
+        - mountPath: /data
+          name: data-volume
+      volumes:
+      - name: data-volume
+        hostPath:
+          path: /data  # Directory on the host node where data will be stored
+          type: DirectoryOrCreate

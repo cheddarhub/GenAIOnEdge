@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mistral
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: mistral
+  template:
+    metadata:
+      labels:
+        app: mistral
+    spec:
+      containers:
+      - name: mistral
+        image: mistral:arm64
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mistral
+spec:
+  selector:
+    app: mistral
+  ports:
+  - port: 8000
+    targetPort: 8000

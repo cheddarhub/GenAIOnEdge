@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: internlm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: internlm
+  template:
+    metadata:
+      labels:
+        app: internlm
+    spec:
+      containers:
+      - name: internlm
+        image: internlm:arm64
+        ports:
+        - containerPort: 8000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: internlm
+spec:
+  selector:
+    app: internlm
+  ports:
+  - port: 8000
+    targetPort: 8000

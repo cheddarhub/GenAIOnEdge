@@ -1,0 +1,29 @@
+To run models on small devices of edges:
+1. CTransformers
+2. Quantization
+3. Convert your model to TensorFlow Lite or ONNX format. Run the model on your edge device using the respective runtime environment.
+4. Knowledge Distillation
+5. Parameter-Efficient Fine-Tuning
+6. Pruning
+
+
+pip install tflite-runtime
+Run the Converted Model:
+import tflite_runtime.interpreter as tflite
+from transformers import AutoTokenizer
+
+tokenizer = AutoTokenizer.from_pretrained("gpt2")
+model_path = "path/to/your/model.tflite"
+
+interpreter = tflite.Interpreter(model_path=model_path)
+interpreter.allocate_tensors()
+
+input_details = interpreter.get_input_details()
+output_details = interpreter.get_output_details()
+
+input_data = tokenizer.encode("Once upon a time,", return_tensors='tf')
+interpreter.set_tensor(input_details[0]['index'], input_data)
+interpreter.invoke()
+
+output_data = interpreter.get_tensor(output_details[0]['index'])
+print(tokenizer.decode(output_data[0], skip_special_tokens=True))

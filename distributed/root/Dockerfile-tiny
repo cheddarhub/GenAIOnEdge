@@ -1,0 +1,20 @@
+FROM ubuntu
+RUN apt-get update
+# Update package list and install sudo
+RUN apt-get update && apt-get install -y sudo
+
+# Your other commands
+RUN sudo apt-get install -y curl
+RUN apt-get install -y make g++
+RUN apt-get install -y git
+RUN git clone https://github.com/b4rtaz/distributed-llama.git
+WORKDIR /distributed-llama
+RUN make dllama
+RUN make dllama-api
+RUN apt-get install python3 python3-pip -y
+RUN pip3 install requests --break-system-packages
+RUN echo "y" | python3 launch.py tinyllama_1_1b_3t_q40
+#RUN apt-get update && apt-get install -y sudo
+EXPOSE 9990
+CMD ["./dllama inference --model models/tinyllama_1_1b_3t_q40/dllama_model_tinyllama_1_1b_3t_q40.m --tokenizer models/tinyllama_1_1b_3t_q40/dllama_tokenizer_tinyllama_1_1b_3t_q40.t --buffer-float-type q80 --prompt 'what is the meaning of life?' --steps 16 --nthreads 4 --workers 172.18.0.2:9998"]
+#CMD ["./dllama", "inference", "--model", "models/tinyllama_1_1b_3t_q40/dllama_model_tinyllama_1_1b_3t_q40.m", "--tokenizer", "models/tinyllama_1_1b_3t_q40/dllama_tokenizer_tinyllama_1_1b_3t_q40.t", "--buffer-float-type", "q80", "--prompt", "'what is the meaning of life?'", "--steps", "256", "--nthreads", "4", "--workers", "172.18.0.2:9998"]
