@@ -1,5 +1,0 @@
-RUN pip install --no-cache-dir llama-cpp-python==0.2.90
-RUN pip install --no-cache-dir torch==2.4.0
-RUN pip install --no-cache-dir ctransformers==0.2.27 --no-binary ctransformers
-numpy==1.26.4
-pandas==2.2.2
